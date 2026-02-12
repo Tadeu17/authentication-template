@@ -1,0 +1,14 @@
+{
+  "loading": "Loading...",
+  "error": "An error occurred",
+  "save": "Save",
+  "saveChanges": "Save Changes",
+  "cancel": "Cancel",
+  "back": "Back",
+  "reset": "Reset",
+  "toggleTheme": "Toggle theme",
+  "switchToLight": "Switch to light mode",
+  "switchToDark": "Switch to dark mode",
+  "selectLanguage": "Select language",
+  "languageSelection": "Language selection"
+}

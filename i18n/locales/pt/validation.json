@@ -1,0 +1,8 @@
+{
+  "required": "Este campo é obrigatório",
+  "invalidEmail": "Formato de email inválido",
+  "passwordTooShort": "A palavra-passe deve ter pelo menos 8 caracteres",
+  "passwordMismatch": "As palavras-passe não coincidem",
+  "nameRequired": "Nome é obrigatório",
+  "nameTooLong": "Nome deve ter 100 caracteres ou menos"
+}

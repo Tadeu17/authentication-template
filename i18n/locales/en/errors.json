@@ -1,0 +1,16 @@
+{
+  "unauthorized": "You must be logged in to access this feature",
+  "forbidden": "You do not have permission to perform this action",
+  "validationError": "Invalid data provided",
+  "notFound": "Resource not found",
+  "userNotFound": "User not found",
+  "internalError": "An unexpected error occurred",
+  "rateLimited": "Too many requests. Please try again later.",
+  "emailNotVerified": "Please verify your email before logging in",
+  "invalidVerificationToken": "Invalid verification link",
+  "verificationTokenExpired": "Verification link has expired",
+  "invalidResetToken": "Invalid or expired reset link",
+  "resetTokenExpired": "Password reset link has expired",
+  "sendEmailFailed": "Failed to send email. Please try again.",
+  "unexpectedError": "An unexpected error occurred. Please try again."
+}

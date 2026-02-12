@@ -1,26 +1,228 @@
 @import "tailwindcss";
 
+/*
+ * Global CSS Variables
+ * These work with next-themes class-based dark mode
+ */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Semantic text colors */
+  --color-heading: #111827;
+  --color-body: #374151;
+  --color-caption: #4B5563;
+  --color-muted: #6B7280;
+  --color-disabled: #9CA3AF;
+
+  /* Semantic background colors */
+  --color-surface: #ffffff;
+  --color-surface-secondary: #ffffff;
+  --color-subtle: #F9FAFB;
+  --color-hover: #F3F4F6;
+
+  /* Border colors */
+  --color-border: #E5E7EB;
+
+  /* Gradient backgrounds */
+  --gradient-from: #F0F9FF;
+  --gradient-to: #EEF2FF;
+
+  /* Alert colors */
+  --alert-error-bg: #FEF2F2;
+  --alert-error-text: #DC2626;
+  --alert-error-border: #FECACA;
+
+  --alert-success-bg: #F0FDF4;
+  --alert-success-text: #16A34A;
+  --alert-success-border: #BBF7D0;
+
+  --alert-warning-bg: #FEFCE8;
+  --alert-warning-text: #CA8A04;
+  --alert-warning-border: #FEF08A;
+
+  --alert-info-bg: #EFF6FF;
+  --alert-info-text: #2563EB;
+  --alert-info-border: #BFDBFE;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+.dark {
+  --background: #111827;
+  --foreground: #f3f4f6;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Semantic text colors - dark mode */
+  --color-heading: #F3F4F6;
+  --color-body: #D1D5DB;
+  --color-caption: #9CA3AF;
+  --color-muted: #9CA3AF;
+  --color-disabled: #6B7280;
+
+  /* Semantic background colors - dark mode */
+  --color-surface: #111827;
+  --color-surface-secondary: #1F2937;
+  --color-subtle: #1F2937;
+  --color-hover: #1F2937;
+
+  /* Border colors - dark mode */
+  --color-border: #374151;
+
+  /* Gradient backgrounds - dark mode */
+  --gradient-from: #111827;
+  --gradient-to: #1F2937;
+
+  /* Alert colors - dark mode */
+  --alert-error-bg: rgba(127, 29, 29, 0.2);
+  --alert-error-text: #F87171;
+  --alert-error-border: #7F1D1D;
+
+  --alert-success-bg: rgba(20, 83, 45, 0.2);
+  --alert-success-text: #4ADE80;
+  --alert-success-border: #14532D;
+
+  --alert-warning-bg: rgba(113, 63, 18, 0.2);
+  --alert-warning-text: #FACC15;
+  --alert-warning-border: #713F12;
+
+  --alert-info-bg: rgba(30, 58, 138, 0.2);
+  --alert-info-text: #60A5FA;
+  --alert-info-border: #1E3A8A;
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
+  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/*
+ * Semantic color utility classes
+ * Use these instead of manual dark: prefixes for consistency
+ */
+
+/* ===================
+ * TEXT COLORS
+ * =================== */
+
+/* Headings and important content */
+.text-heading {
+  color: var(--color-heading);
+}
+
+/* Body text and paragraphs */
+.text-body {
+  color: var(--color-body);
+}
+
+/* Descriptions, subtitles, captions */
+.text-caption {
+  color: var(--color-caption);
+}
+
+/* Less important info */
+.text-muted {
+  color: var(--color-muted);
+}
+
+/* Disabled elements */
+.text-disabled {
+  color: var(--color-disabled);
+}
+
+/* ===================
+ * BACKGROUND COLORS
+ * =================== */
+
+/* Surface background - cards, sidebars, modals */
+.bg-surface {
+  background-color: var(--color-surface);
+}
+
+/* Surface secondary - slightly elevated from surface */
+.bg-surface-secondary {
+  background-color: var(--color-surface-secondary);
+}
+
+/* Subtle background - form sections, read-only areas */
+.bg-subtle {
+  background-color: var(--color-subtle);
+}
+
+/* Hover background for interactive elements */
+.bg-hover:hover {
+  background-color: var(--color-hover);
+}
+
+/* ===================
+ * BORDER COLORS
+ * =================== */
+
+/* Standard border */
+.border-default {
+  border-color: var(--color-border);
+}
+
+/* ===================
+ * GRADIENT BACKGROUNDS
+ * =================== */
+
+/* Page gradient - used on dashboard, auth pages */
+.bg-page-gradient {
+  background: linear-gradient(to bottom right, var(--gradient-from), var(--gradient-to));
+}
+
+/* ===================
+ * ALERT STYLES
+ * =================== */
+
+/* Error/danger alert */
+.alert-error {
+  background-color: var(--alert-error-bg);
+  color: var(--alert-error-text);
+  border: 1px solid var(--alert-error-border);
+}
+
+/* Success alert */
+.alert-success {
+  background-color: var(--alert-success-bg);
+  color: var(--alert-success-text);
+  border: 1px solid var(--alert-success-border);
+}
+
+/* Warning alert */
+.alert-warning {
+  background-color: var(--alert-warning-bg);
+  color: var(--alert-warning-text);
+  border: 1px solid var(--alert-warning-border);
+}
+
+/* Info alert */
+.alert-info {
+  background-color: var(--alert-info-bg);
+  color: var(--alert-info-text);
+  border: 1px solid var(--alert-info-border);
+}
+
+/* ===================
+ * NAVIGATION STYLES
+ * =================== */
+
+/* Nav link default state */
+.nav-link {
+  color: var(--color-body);
+  transition: background-color 150ms ease;
+}
+
+.nav-link:hover {
+  background-color: var(--color-hover);
+}
+
+/* Nav link disabled state */
+.nav-link-disabled {
+  cursor: not-allowed;
+  color: var(--color-disabled);
+}
+
+/* Text balance utility */
+.text-balance {
+  text-wrap: balance;
 }

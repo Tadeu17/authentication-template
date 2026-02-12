@@ -1,7 +1,18 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Mark optional database/email packages as external to prevent build errors
+  // These packages are only needed when their respective adapters are used
+  serverExternalPackages: [
+    'mongodb',
+    '@prisma/client',
+    'prisma',
+    'resend',
+    '@sendgrid/mail',
+  ],
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

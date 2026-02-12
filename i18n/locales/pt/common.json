@@ -1,0 +1,14 @@
+{
+  "loading": "Carregando...",
+  "error": "Ocorreu um erro",
+  "save": "Guardar",
+  "saveChanges": "Guardar Alterações",
+  "cancel": "Cancelar",
+  "back": "Voltar",
+  "reset": "Repor",
+  "toggleTheme": "Alternar tema",
+  "switchToLight": "Mudar para modo claro",
+  "switchToDark": "Mudar para modo escuro",
+  "selectLanguage": "Selecionar idioma",
+  "languageSelection": "Seleção de idioma"
+}

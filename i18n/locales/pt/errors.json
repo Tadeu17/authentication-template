@@ -1,0 +1,16 @@
+{
+  "unauthorized": "Deve estar autenticado para aceder a esta funcionalidade",
+  "forbidden": "Não tem permissão para realizar esta ação",
+  "validationError": "Dados inválidos fornecidos",
+  "notFound": "Recurso não encontrado",
+  "userNotFound": "Utilizador não encontrado",
+  "internalError": "Ocorreu um erro inesperado",
+  "rateLimited": "Demasiados pedidos. Por favor tente mais tarde.",
+  "emailNotVerified": "Por favor verifique o seu email antes de entrar",
+  "invalidVerificationToken": "Link de verificação inválido",
+  "verificationTokenExpired": "Link de verificação expirou",
+  "invalidResetToken": "Link de reposição inválido ou expirado",
+  "resetTokenExpired": "Link de reposição de palavra-passe expirou",
+  "sendEmailFailed": "Falha ao enviar email. Por favor tente novamente.",
+  "unexpectedError": "Ocorreu um erro inesperado. Por favor tente novamente."
+}
