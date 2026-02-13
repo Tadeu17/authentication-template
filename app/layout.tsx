@@ -5,10 +5,7 @@ import { getLocale, getMessages } from "next-intl/server";
 import { Providers } from "@/components/providers/Providers";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Authentication Template",
@@ -25,7 +22,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${inter.variable} antialiased`}>
+      <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
           <Providers>{children}</Providers>
         </NextIntlClientProvider>

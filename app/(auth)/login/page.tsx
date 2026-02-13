@@ -208,6 +208,9 @@ function LoginForm() {
         <div className="rounded-lg alert-warning p-3 text-sm space-y-2">
           <p className="font-medium">{tVerification("notVerified")}</p>
           <p>{tVerification("notVerifiedDescription")}</p>
+          <p className="text-xs opacity-80 border-t border-warning/20 pt-2 mt-2">
+            {tVerification("demoModeNotice")}
+          </p>
           <Button
             size="sm"
             color="primary"

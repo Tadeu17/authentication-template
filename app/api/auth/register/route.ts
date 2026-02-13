@@ -2,10 +2,10 @@ export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from "next/server";
 import { hash } from "bcrypt";
-import { getAdapter } from "@/lib/db";
+import { getAdapter, isDemoMode } from "@/lib/db";
 import { registerSchema } from "@/lib/validations/auth";
 import { applyRateLimit, RATE_LIMITS, getClientIp, hashIp } from "@/lib/rate-limiter";
-import { sendVerificationEmail } from "@/lib/email";
+import { sendVerificationEmail, isConsoleMode } from "@/lib/email";
 import { randomUUID } from "crypto";
 import { ERROR_CODES, ERROR_MESSAGES, HTTP_STATUS } from "@/lib/constants";
 
@@ -75,16 +75,43 @@ export async function POST(request: NextRequest) {
     const verificationToken = randomUUID();
     const verificationExpiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
 
+    // Check if running in full demo mode (memory DB + console email)
+    const isFullDemoMode = isDemoMode() && isConsoleMode();
+
     // Create user in database
     const user = await adapter.createUser({
       email,
       passwordHash,
       name,
-      emailVerificationToken: verificationToken,
-      emailVerificationTokenExpiresAt: verificationExpiresAt,
+      emailVerificationToken: isFullDemoMode ? null : verificationToken,
+      emailVerificationTokenExpiresAt: isFullDemoMode ? null : verificationExpiresAt,
     });
 
-    // Send verification email
+    // In full demo mode, auto-verify the email so users can test immediately
+    if (isFullDemoMode) {
+      await adapter.updateUser(user.id, {
+        emailVerified: new Date(),
+        emailVerificationToken: null,
+        emailVerificationTokenExpiresAt: null,
+      });
+      console.info("Demo mode: Email auto-verified for", {
+        userId: user.id,
+        email: user.email.substring(0, 3) + "***"
+      });
+
+      return NextResponse.json(
+        {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          createdAt: user.createdAt,
+          message: "DEMO_MODE_AUTO_VERIFIED",
+        },
+        { status: 201 }
+      );
+    }
+
+    // Send verification email (only in non-demo mode)
     try {
       await sendVerificationEmail(user.email, verificationToken, "en");
       console.info("Verification email sent on registration", {

@@ -27,6 +27,7 @@ export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [isDemoAutoVerified, setIsDemoAutoVerified] = useState(false);
   const [userEmail, setUserEmail] = useState<string>("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -61,8 +62,9 @@ export default function RegisterPage() {
         return;
       }
 
-      // Registration successful, show verification message
+      // Registration successful
       setUserEmail(data.email);
+      setIsDemoAutoVerified(result.message === "DEMO_MODE_AUTO_VERIFIED");
       setRegistrationSuccess(true);
     } catch (error) {
       console.error("Registration error:", error);
@@ -85,10 +87,30 @@ export default function RegisterPage() {
               <CheckCircle className="w-16 h-16 text-success" />
             </div>
 
-            <h1 className="text-2xl font-bold mb-2">{tVerification("checkEmail")}</h1>
-            <p className="text-default-500 mb-6">
-              {tVerification("checkEmailDescription", { email: userEmail })}
-            </p>
+            {isDemoAutoVerified ? (
+              <>
+                <h1 className="text-2xl font-bold mb-2">{tVerification("demoAutoVerifiedTitle")}</h1>
+                <p className="text-default-500 mb-4">
+                  {tVerification("demoAutoVerifiedDescription")}
+                </p>
+                <div className="rounded-lg bg-success/10 border border-success/20 p-3 text-sm text-success-600 dark:text-success-400 mb-6">
+                  <p className="font-medium">{tVerification("demoModeTitle")}</p>
+                  <p className="text-xs mt-1 opacity-80">{tVerification("demoAutoVerifiedNote")}</p>
+                </div>
+              </>
+            ) : (
+              <>
+                <h1 className="text-2xl font-bold mb-2">{tVerification("checkEmail")}</h1>
+                <p className="text-default-500 mb-4">
+                  {tVerification("checkEmailDescription", { email: userEmail })}
+                </p>
+                {/* Demo mode notice for console email (but real DB) */}
+                <div className="rounded-lg bg-warning/10 border border-warning/20 p-3 text-sm text-warning-600 dark:text-warning-400 mb-6">
+                  <p className="font-medium">{tVerification("demoModeTitle")}</p>
+                  <p className="text-xs mt-1 opacity-80">{tVerification("demoModeDescription")}</p>
+                </div>
+              </>
+            )}
 
             <Button
               as={Link}
@@ -97,7 +119,7 @@ export default function RegisterPage() {
               size="lg"
               fullWidth
             >
-              {tVerification("backToLogin")}
+              {isDemoAutoVerified ? tLogin("submit") : tVerification("backToLogin")}
             </Button>
           </CardBody>
         </Card>

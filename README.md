@@ -51,8 +51,11 @@ A **database-agnostic** authentication template for Next.js applications. Includ
 By default, the template runs in **demo mode** with:
 - **In-memory database**: No database setup required
 - **Console emails**: Verification tokens logged to console
+- **Auto-verified emails**: When using both memory DB and console email, accounts are automatically verified on registration
 
-This allows you to test the full authentication flow immediately.
+This allows you to test the full authentication flow immediately - just register and log in!
+
+> **Note**: In demo mode, all data is lost when the server restarts.
 
 ## Production Setup
 
